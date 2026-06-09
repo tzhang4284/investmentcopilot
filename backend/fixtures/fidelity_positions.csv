@@ -1,0 +1,14 @@
+Account Number,Account Name,Symbol,Description,Quantity,Last Price,Last Price Change,Current Value,Today's Gain/Loss Dollar,Today's Gain/Loss Percent,Total Gain/Loss Dollar,Total Gain/Loss Percent,Percent Of Account,Cost Basis Total,Average Cost Basis,Type
+Z12345678,Individual,AAPL,APPLE INC,50,$201.50,+$1.20,"$10,075.00",+$60.00,+0.60%,"+$2,575.00",+34.33%,18.5%,"$7,500.00",$150.00,Cash
+Z12345678,Individual,MSFT,MICROSOFT CORP,25,$452.30,-$3.10,"$11,307.50",-$77.50,-0.68%,"+$3,807.50",+50.77%,20.8%,"$7,500.00",$300.00,Cash
+Z12345678,Individual,NVDA,NVIDIA CORP,40,$135.20,+$2.45,"$5,408.00",+$98.00,+1.85%,"+$2,208.00",+69.00%,9.9%,"$3,200.00",$80.00,Cash
+Z12345678,Individual,GOOGL,ALPHABET INC CL A,30,$178.90,--,"$5,367.00",--,--,"+$1,167.00",+27.79%,9.9%,"$4,200.00",$140.00,Cash
+Z12345678,Individual,BRK/B,BERKSHIRE HATHAWAY INC CL B,12,$455.00,+$0.85,"$5,460.00",+$10.20,+0.19%,"+$1,260.00",+30.00%,10.0%,"$4,200.00",$350.00,Cash
+Z12345678,Individual,SPAXX**,FIDELITY GOVERNMENT MONEY MARKET,--,$1.00,--,"$6,789.12",--,--,--,--,12.5%,--,--,Cash
+Z12345678,Individual,Pending Activity,,--,--,--,"$250.00",--,--,--,--,--,--,--,Cash
+
+"Date downloaded 06/08/2026 9:32 PM ET"
+
+"The data and information in this spreadsheet is provided to you for your personal reference only, and is not intended for trading purposes."
+
+"Brokerage services are provided by Fidelity Brokerage Services LLC (FBS), Member NYSE, SIPC."

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node
+node_modules/
+.next/
+out/
+
+# Data / secrets
+backend/data/
+*.db
+.env
+.env.local
+
+# OS
+.DS_Store
