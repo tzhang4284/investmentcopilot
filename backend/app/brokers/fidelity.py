@@ -96,11 +96,11 @@ class FidelityAdapter(BrokerAdapter):
             if not symbol:
                 result.skipped_rows.append(raw)
                 continue
+            if symbol.upper() == "PENDING ACTIVITY":
+                result.skipped_rows.append(raw)
+                continue
             quantity = to_float(row.get("quantity"))
-            is_cash = bool(MONEY_MARKET_PATTERNS.match(symbol)) or symbol.upper() in (
-                "CASH",
-                "PENDING ACTIVITY",
-            )
+            is_cash = bool(MONEY_MARKET_PATTERNS.match(symbol)) or symbol.upper() == "CASH"
             current_value = to_float(row.get("currentvalue"))
             if quantity is None:
                 if is_cash and current_value is not None:
