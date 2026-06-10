@@ -5,12 +5,16 @@ from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from .config import settings
 
-Path(settings.db_path).parent.mkdir(parents=True, exist_ok=True)
+url = settings.sqlalchemy_url
 
-engine = create_engine(
-    f"sqlite:///{settings.db_path}",
-    connect_args={"check_same_thread": False},
-)
+if url.startswith("sqlite"):
+    Path(settings.db_path).parent.mkdir(parents=True, exist_ok=True)
+    engine = create_engine(url, connect_args={"check_same_thread": False})
+else:
+    # Serverless-friendly: recycle connections and ping before use so idle
+    # Neon/Postgres connections dropped by the pooler don't surface as errors.
+    engine = create_engine(url, pool_pre_ping=True, pool_recycle=300)
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
 
 

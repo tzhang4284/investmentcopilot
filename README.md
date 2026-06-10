@@ -14,11 +14,13 @@ A personal "hedge fund in a box": **you are the PM**, the app is your analyst te
 
 | Layer | Tech |
 |---|---|
-| Backend | Python, FastAPI, SQLAlchemy (SQLite), pandas |
-| Market data | yfinance (cached in SQLite with TTL + stale-serve) |
+| Backend | Python, FastAPI, SQLAlchemy (SQLite locally, Postgres in production), pandas |
+| Market data | yfinance (cached in the DB with TTL + stale-serve) |
 | Filings/insiders | SEC EDGAR JSON APIs + Form 4 XML |
 | AI | Claude API (`claude-opus-4-8`) — streaming chat with tool use, structured thesis outputs |
 | Frontend | Next.js (App Router, TypeScript), Tailwind CSS, Recharts |
+| Auth | Auth.js (NextAuth v5) — Google sign-in + email allowlist; backend shielded by a server-side bearer token |
+| Hosting | Two Vercel projects (frontend + backend) + Neon Postgres — see [DEPLOYMENT.md](DEPLOYMENT.md) |
 
 ## Quick start
 
@@ -39,6 +41,7 @@ uvicorn app.main:app --reload --port 8000
 ```bash
 cd frontend
 npm install
+echo "AUTH_DISABLED=true" > .env.local   # skip Google sign-in for local dev
 npm run dev        # http://localhost:3000  (proxies /api/* to the backend)
 ```
 
@@ -59,6 +62,12 @@ for f in backend/fixtures/*.csv; do curl -F "file=@$f" localhost:8000/api/portfo
 
 Everything except the AI features works: ingestion, holdings, analytics, comps, insiders, thesis CRUD.
 AI endpoints (`/api/chat`, thesis draft/critique, memo generation) return `503` and the UI explains why.
+
+## Deploying to the cloud
+
+The whole app runs on Vercel (frontend + backend as separate projects from this
+repo) with Neon Postgres, behind Google sign-in restricted to your email.
+Step-by-step guide: **[DEPLOYMENT.md](DEPLOYMENT.md)**.
 
 ## Tests
 
