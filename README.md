@@ -2,6 +2,8 @@
 
 A personal "hedge fund in a box": **you are the PM**, the app is your analyst team and back office.
 
+> 🤖 **Picking this up with an AI assistant (Claude, GPT, Cursor, …)?** Point it at **[AGENTS.md](AGENTS.md)** first — it's a full handoff guide with architecture, conventions, gotchas, and recipes.
+
 - **Ingest** your real brokerage data — drop in CSV exports from **Fidelity** and **Merrill Edge** (broker and file type auto-detected, dirty rows handled, re-uploads deduped).
 - **Analyze** the book — holdings with live P&L, sector/asset-class allocation, concentration (top-5, HHI), Sharpe, beta vs SPY, max drawdown.
 - **Research** stocks — price charts, fundamentals, SEC EDGAR financial trends.
