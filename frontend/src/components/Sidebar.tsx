@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 const NAV = [
   { href: "/", label: "Dashboard", icon: "◈" },
@@ -13,8 +14,9 @@ const NAV = [
   { href: "/chat", label: "AI Analyst", icon: "✦" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ userEmail }: { userEmail?: string | null }) {
   const pathname = usePathname();
+  if (pathname === "/signin") return null;
   return (
     <aside className="w-52 shrink-0 border-r border-edge bg-surface min-h-screen sticky top-0 flex flex-col">
       <div className="px-5 py-6">
@@ -45,6 +47,20 @@ export default function Sidebar() {
           );
         })}
       </nav>
+      {userEmail && (
+        <div className="px-5 py-3 border-t border-edge flex items-center justify-between gap-2">
+          <span className="text-xs text-muted truncate" title={userEmail}>
+            {userEmail}
+          </span>
+          <button
+            onClick={() => signOut({ callbackUrl: "/signin" })}
+            className="text-xs text-muted hover:text-foreground transition-colors shrink-0"
+            title="Sign out"
+          >
+            Sign out
+          </button>
+        </div>
+      )}
       <div className="px-5 py-4 text-[10px] text-muted border-t border-edge">
         Data: yfinance + SEC EDGAR
         <br />

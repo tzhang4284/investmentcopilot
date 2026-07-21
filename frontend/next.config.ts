@@ -1,14 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "http://localhost:8000/api/:path*",
-      },
-    ];
-  },
-};
+// All /api/* traffic goes through the authenticated proxy route handler at
+// src/app/api/[...path]/route.ts (BACKEND_URL env var), not a rewrite, so the
+// backend token never reaches the browser.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
